@@ -30,6 +30,15 @@ function TaskManager() {
     );
   };
 
+  const editTask = (id: string, newTitle: string) => {
+  setTasks(prev =>
+    prev.map(task =>
+      task.id === id ? { ...task, title: newTitle } : task
+    )
+  );
+};
+
+
   const deleteTask = (id: string) => {
     setTasks(prev => prev.filter(task => task.id !== id));
   };
@@ -39,7 +48,13 @@ function TaskManager() {
       <h1 className="text-2xl font-bold mb-4">Task Manager</h1>
 
       <TaskForm onAdd={addTask} />
-      <TaskList tasks={tasks} onToggle={toggleTask} onDelete={deleteTask} />
+      <TaskList
+  tasks={tasks}
+  onToggle={toggleTask}
+  onDelete={deleteTask}
+  onEdit={editTask}
+/>
+
     </div>
   );
 }

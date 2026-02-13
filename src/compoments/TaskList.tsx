@@ -3,12 +3,13 @@ import type { Task } from "../tyeps/type";
 import TaskItem from "./TaskItem";
 
 interface Props {
-  tasks: Task[]
+  tasks: Task[];
   onToggle: (id: string) => void;
   onDelete: (id: string) => void;
+  onEdit: (id: string, newTitle: string) => void;
 }
 
-const TaskList = ({ tasks, onToggle, onDelete }: Props) => {
+const TaskList = ({ tasks, onToggle, onDelete, onEdit }: Props) => {
   return (
     <div>
       {tasks.map((task) => (
@@ -17,10 +18,12 @@ const TaskList = ({ tasks, onToggle, onDelete }: Props) => {
           task={task}
           onToggle={onToggle}
           onDelete={onDelete}
+          onEdit={onEdit}
         />
       ))}
     </div>
   );
 };
+
 
 export default TaskList;
